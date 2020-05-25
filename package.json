@@ -1,0 +1,26 @@
+{
+  "name": "arena-survival",
+  "version": "0.0.1",
+  "description": "Arena battle horde survival",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EOussama/arena-survival.git"
+  },
+  "keywords": [
+    "arena",
+    "survival",
+    "arena-survival",
+    "excalibur",
+    "electron"
+  ],
+  "author": "EOussama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EOussama/arena-survival/issues"
+  },
+  "homepage": "https://github.com/EOussama/arena-survival#readme"
+}
