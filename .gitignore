@@ -1,2 +1,6 @@
-./node_modules
-./dist
+# Meta
+.gitignore
+
+# Folders
+node_modules
+dist
