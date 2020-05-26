@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/EOussama/arena-survival/issues"
   },
-  "homepage": "https://github.com/EOussama/arena-survival#readme"
+  "homepage": "https://github.com/EOussama/arena-survival#readme",
+  "dependencies": {
+    "excalibur": "^0.24.3"
+  }
 }
