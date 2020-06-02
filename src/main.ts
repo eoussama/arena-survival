@@ -1,6 +1,5 @@
 import {
   Engine,
-  Actor,
   EngineOptions
 } from "excalibur";
 
