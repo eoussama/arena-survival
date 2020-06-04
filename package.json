@@ -5,7 +5,11 @@
 	"main": "index.js",
 	"scripts": {
 		"clean": "rm -rf ./dist",
-		"build": "npm run clean && mkdir dist && cp ./src/index.html ./dist/index.html && webpack --config webpack.config.js"
+		"assets": "mkdir dist && cp ./src/index.html ./dist/index.html",
+		"build": "npm run clean && npm run assets && webpack --config webpack.config.js",
+		"watch": "npm run build -- --watch",
+		"live": "live-server ./dist --watch",
+		"start": "npm run build && start ./dist/index.html"
 	},
 	"repository": {
 		"type": "git",
@@ -28,6 +32,7 @@
 		"excalibur": "^0.24.3"
 	},
 	"devDependencies": {
+		"live-server": "^1.2.1",
 		"ts-loader": "^7.0.5",
 		"typescript": "^3.9.3",
 		"webpack": "^4.43.0",
