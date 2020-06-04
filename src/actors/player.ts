@@ -2,7 +2,11 @@ import { Actor, Engine } from "excalibur";
 
 export class Player extends Actor {
 
+  /**
+   * Initializes the player
+   * @param engine The engine object
+   */
   public onInitialize(engine: Engine) {
-    console.log({ player: engine });
+    console.log('Initializing the player...');
   }
 }

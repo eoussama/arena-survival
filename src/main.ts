@@ -2,17 +2,13 @@ import {
   Engine,
   EngineOptions
 } from "excalibur";
-import { Menu } from "./scenes/menu";
-import { Player } from "./actors/player";
+
+import * as scenes from './scenes/scenes';
 
 const options: EngineOptions = {};
 const game = new Engine(options);
 
-const menu = new Menu(game);
-const player = new Player();
-
-menu.add(player);
-game.addScene('menu', menu);
+scenes.init(game);
 
 game
   .start()
