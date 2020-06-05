@@ -232,6 +232,14 @@ var Player = /** @class */ (function (_super) {
     Player.prototype.onInitialize = function (engine) {
         console.log('Initializing the player...');
     };
+    /**
+     * Draws the player
+     * @param ctx The canvas context
+     * @param delta Delta time
+     */
+    Player.prototype.onPostDraw = function (ctx, delta) {
+        console.log('DRAWING');
+    };
     return Player;
 }(excalibur_1.Actor));
 exports.Player = Player;

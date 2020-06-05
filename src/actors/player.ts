@@ -9,4 +9,13 @@ export class Player extends Actor {
   public onInitialize(engine: Engine) {
     console.log('Initializing the player...');
   }
+
+  /**
+   * Draws the player
+   * @param ctx The canvas context
+   * @param delta Delta time
+   */
+  public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) {
+    console.log('DRAWING');
+  }
 }
