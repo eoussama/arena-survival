@@ -1,5 +1,11 @@
 import { Actor, Engine } from "excalibur";
+import { AssetLoader } from "../loader/loader";
 
+
+
+/**
+ * The player actor
+ */
 export class Player extends Actor {
 
   /**
@@ -8,6 +14,7 @@ export class Player extends Actor {
    */
   public onInitialize(engine: Engine) {
     console.log('Initializing the player...');
+    this.addDrawing(AssetLoader.getById('player').asSprite());
   }
 
   /**

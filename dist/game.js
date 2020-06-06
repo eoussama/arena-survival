@@ -111,14 +111,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var excalibur_1 = __webpack_require__(1);
+var loader_1 = __webpack_require__(5);
 var scenes = __importStar(__webpack_require__(2));
 var options = {};
 var game = new excalibur_1.Engine(options);
-var txPlayer = new excalibur_1.Texture('/assets/gui/actors/hero/player.png');
-var loader = new excalibur_1.Loader([txPlayer]);
 scenes.init(game);
 game
-    .start(loader)
+    .start(loader_1.AssetLoader.loader)
     .then(function () {
     game.goToScene('menu');
 });
@@ -181,6 +180,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Menu = void 0;
 var excalibur_1 = __webpack_require__(1);
 var player_1 = __webpack_require__(4);
+/**
+ * The menu scene
+ */
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
     function Menu() {
@@ -192,7 +194,12 @@ var Menu = /** @class */ (function (_super) {
      */
     Menu.prototype.onInitialize = function (engine) {
         console.log('Initializing the menu scene...');
-        var player = new player_1.Player();
+        var player = new player_1.Player({
+            x: engine.currentScene.camera.x,
+            y: engine.currentScene.camera.y,
+            width: 50,
+            height: 50
+        });
         this.add(player);
     };
     return Menu;
@@ -222,6 +229,10 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Player = void 0;
 var excalibur_1 = __webpack_require__(1);
+var loader_1 = __webpack_require__(5);
+/**
+ * The player actor
+ */
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player() {
@@ -233,6 +244,7 @@ var Player = /** @class */ (function (_super) {
      */
     Player.prototype.onInitialize = function (engine) {
         console.log('Initializing the player...');
+        this.addDrawing(loader_1.AssetLoader.getById('player').asSprite());
     };
     /**
      * Draws the player
@@ -243,6 +255,76 @@ var Player = /** @class */ (function (_super) {
     return Player;
 }(excalibur_1.Actor));
 exports.Player = Player;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AssetLoader = void 0;
+var excalibur_1 = __webpack_require__(1);
+var actors_1 = __webpack_require__(6);
+/**
+ * The assets loader
+ */
+var AssetLoader = /** @class */ (function (_super) {
+    __extends(AssetLoader, _super);
+    function AssetLoader() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * The loader collection
+     */
+    AssetLoader.loader = new excalibur_1.Loader(__spreadArrays(actors_1.actorsTable.map(function (actor) { return actor.resource; })));
+    /**
+     * The resource collection
+     */
+    AssetLoader.resouces = __spreadArrays(actors_1.actorsTable);
+    /**
+     * Gets a resource by ID
+     * @param id The ID of the resource
+     */
+    AssetLoader.getById = function (id) { return AssetLoader.resouces.filter(function (actor) { return actor.id === id; })[0].resource; };
+    return AssetLoader;
+}(excalibur_1.Loader));
+exports.AssetLoader = AssetLoader;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.actorsTable = void 0;
+var excalibur_1 = __webpack_require__(1);
+exports.actorsTable = [
+    { id: 'player', resource: new excalibur_1.Texture('/assets/gui/actors/hero/player.png') }
+];
 
 
 /***/ })

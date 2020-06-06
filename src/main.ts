@@ -1,22 +1,18 @@
 import {
   Engine,
-  EngineOptions,
-  Texture,
-  Loader
+  EngineOptions
 } from "excalibur";
 
+import { AssetLoader } from "./loader/loader";
 import * as scenes from './scenes/scenes';
 
 const options: EngineOptions = {};
 const game = new Engine(options);
 
-const txPlayer = new Texture('/assets/gui/actors/hero/player.png')
-const loader = new Loader([txPlayer])
-
 scenes.init(game);
 
 game
-  .start(loader)
+  .start(AssetLoader.loader)
   .then(() => {
     game.goToScene('menu');
   });
