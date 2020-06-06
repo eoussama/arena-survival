@@ -5,8 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"clean": "rm -rf ./dist",
-		"assets": "mkdir dist && cp ./src/index.html ./dist/index.html",
-		"build": "npm run clean && npm run assets && webpack --config webpack.config.js",
+		"prepare": "mkdir dist && cp ./src/index.html ./dist/index.html",
+		"assets": "cp -r ./assets ./dist/",
+		"build": "npm run clean && npm run prepare && npm run assets && webpack --config webpack.config.js",
 		"watch": "npm run build -- --watch",
 		"live": "live-server ./dist --watch",
 		"start": "npm run build && start ./dist/index.html"

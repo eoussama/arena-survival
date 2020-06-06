@@ -15,7 +15,5 @@ export class Player extends Actor {
    * @param ctx The canvas context
    * @param delta Delta time
    */
-  public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) {
-    console.log('DRAWING');
-  }
+  public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) { }
 }

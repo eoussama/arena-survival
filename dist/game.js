@@ -114,9 +114,11 @@ var excalibur_1 = __webpack_require__(1);
 var scenes = __importStar(__webpack_require__(2));
 var options = {};
 var game = new excalibur_1.Engine(options);
+var txPlayer = new excalibur_1.Texture('/assets/gui/actors/hero/player.png');
+var loader = new excalibur_1.Loader([txPlayer]);
 scenes.init(game);
 game
-    .start()
+    .start(loader)
     .then(function () {
     game.goToScene('menu');
 });
@@ -237,9 +239,7 @@ var Player = /** @class */ (function (_super) {
      * @param ctx The canvas context
      * @param delta Delta time
      */
-    Player.prototype.onPostDraw = function (ctx, delta) {
-        console.log('DRAWING');
-    };
+    Player.prototype.onPostDraw = function (ctx, delta) { };
     return Player;
 }(excalibur_1.Actor));
 exports.Player = Player;
