@@ -25,9 +25,8 @@ export class Player extends Actor {
   public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) { }
 
   public update(engine: Engine, delta: number) {
-    console.log({ delta });
     if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
-      console.log('Move up.');
+      console.log('Move up');
     }
   }
 }

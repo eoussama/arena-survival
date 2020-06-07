@@ -323,9 +323,8 @@ var Player = /** @class */ (function (_super) {
      */
     Player.prototype.onPostDraw = function (ctx, delta) { };
     Player.prototype.update = function (engine, delta) {
-        console.log({ delta: delta });
         if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Up)) {
-            console.log('Move up.');
+            console.log('Move up');
         }
     };
     return Player;
