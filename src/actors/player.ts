@@ -24,6 +24,11 @@ export class Player extends Actor {
    */
   public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) { }
 
+  /**
+   * Updates the player
+   * @param engine The engine object
+   * @param delta Delta time
+   */
   public update(engine: Engine, delta: number) {
     if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
       console.log('Move up');
