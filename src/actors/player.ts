@@ -1,4 +1,4 @@
-import { Actor, Engine } from "excalibur";
+import { Actor, Engine, Input } from "excalibur";
 import { AssetLoader } from "../loader/loader";
 
 
@@ -23,4 +23,11 @@ export class Player extends Actor {
    * @param delta Delta time
    */
   public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) { }
+
+  public update(engine: Engine, delta: number) {
+    console.log({ delta });
+    if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
+      console.log('Move up.');
+    }
+  }
 }
