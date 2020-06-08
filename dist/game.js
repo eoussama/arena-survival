@@ -331,6 +331,18 @@ var Player = /** @class */ (function (_super) {
         if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Up)) {
             console.log('Move up');
         }
+        else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Down)) {
+            console.log('Move down');
+        }
+        else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Left)) {
+            console.log('Move left');
+        }
+        else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Right)) {
+            console.log('Move right');
+        }
+        else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Space)) {
+            console.log('Attack');
+        }
     };
     return Player;
 }(excalibur_1.Actor));

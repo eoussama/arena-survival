@@ -32,6 +32,14 @@ export class Player extends Actor {
   public update(engine: Engine, delta: number) {
     if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
       console.log('Move up');
+    } else if (engine.input.keyboard.isHeld(Input.Keys.Down)) {
+      console.log('Move down');
+    } else if (engine.input.keyboard.isHeld(Input.Keys.Left)) {
+      console.log('Move left');
+    } else if (engine.input.keyboard.isHeld(Input.Keys.Right)) {
+      console.log('Move right');
+    } else if (engine.input.keyboard.isHeld(Input.Keys.Space)) {
+      console.log('Attack');
     }
   }
 }
