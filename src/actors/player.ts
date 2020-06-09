@@ -13,7 +13,7 @@ export class Player extends Actor {
    * @param engine The engine object
    */
   public onInitialize(engine: Engine) {
-    console.log('Initializing the player...');
+    console.log('Initializing the player...', AssetLoader.getById('player'));
     this.addDrawing(AssetLoader.getById('player').asSprite());
   }
 
