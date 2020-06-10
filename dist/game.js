@@ -327,7 +327,7 @@ var Player = /** @class */ (function (_super) {
      * @param engine The engine object
      * @param delta Delta time
      */
-    Player.prototype.update = function (engine, delta) {
+    Player.prototype.onPostUpdate = function (engine, delta) {
         if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Up)) {
             console.log('Move up');
         }

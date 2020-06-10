@@ -13,7 +13,7 @@ export class Player extends Actor {
    * @param engine The engine object
    */
   public onInitialize(engine: Engine) {
-    console.log('Initializing the player...', AssetLoader.getById('player'));
+    console.log('Initializing the player...');
     this.addDrawing(AssetLoader.getById('player').asSprite());
   }
 
@@ -29,7 +29,7 @@ export class Player extends Actor {
    * @param engine The engine object
    * @param delta Delta time
    */
-  public update(engine: Engine, delta: number) {
+  public onPostUpdate(engine: Engine, delta: number) {
     if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
       console.log('Move up');
     } else if (engine.input.keyboard.isHeld(Input.Keys.Down)) {
