@@ -327,18 +327,23 @@ var Player = /** @class */ (function (_super) {
      * @param engine The engine object
      * @param delta Delta time
      */
-    Player.prototype.onPostUpdate = function (engine, delta) {
+    Player.prototype.update = function (engine, delta) {
+        _super.prototype.update.call(this, engine, delta);
         if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Up)) {
             console.log('Move up');
+            this.body.pos.y -= 1;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Down)) {
             console.log('Move down');
+            this.body.pos.y += 1;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Left)) {
             console.log('Move left');
+            this.body.pos.x -= 1;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Right)) {
             console.log('Move right');
+            this.body.pos.x += 1;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Space)) {
             console.log('Attack');
