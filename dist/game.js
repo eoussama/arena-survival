@@ -306,7 +306,9 @@ var loader_1 = __webpack_require__(2);
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.speed = 2;
+        return _this;
     }
     /**
      * Initializes the player
@@ -333,19 +335,19 @@ var Player = /** @class */ (function (_super) {
         _super.prototype.update.call(this, engine, delta);
         if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Up)) {
             console.log('Move up');
-            this.body.pos.y -= 1;
+            this.body.pos.y -= this.speed;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Down)) {
             console.log('Move down');
-            this.body.pos.y += 1;
+            this.body.pos.y += this.speed;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Left)) {
             console.log('Move left');
-            this.body.pos.x -= 1;
+            this.body.pos.x -= this.speed;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Right)) {
             console.log('Move right');
-            this.body.pos.x += 1;
+            this.body.pos.x += this.speed;
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Space)) {
             console.log('Attack');
