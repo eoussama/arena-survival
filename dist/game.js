@@ -267,8 +267,8 @@ var Menu = /** @class */ (function (_super) {
         var player = new player_1.Player({
             x: engine.currentScene.camera.x,
             y: engine.currentScene.camera.y,
-            width: 50,
-            height: 50
+            width: 256,
+            height: 256
         });
         this.add(player);
     };
@@ -314,7 +314,9 @@ var Player = /** @class */ (function (_super) {
      */
     Player.prototype.onInitialize = function (engine) {
         console.log('Initializing the player...');
-        this.addDrawing(loader_1.AssetLoader.getById('player').asSprite());
+        var sprite = loader_1.AssetLoader.getById('player').asSprite();
+        sprite.scale = new excalibur_1.Vector(5, 5);
+        this.addDrawing(sprite);
     };
     /**
      * Draws the player

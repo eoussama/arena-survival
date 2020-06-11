@@ -1,4 +1,4 @@
-import { Actor, Engine, Input } from "excalibur";
+import { Actor, Engine, Input, Vector } from "excalibur";
 import { AssetLoader } from "../loader/loader";
 
 
@@ -14,7 +14,11 @@ export class Player extends Actor {
    */
   public onInitialize(engine: Engine) {
     console.log('Initializing the player...');
-    this.addDrawing(AssetLoader.getById('player').asSprite());
+
+    const sprite = AssetLoader.getById('player').asSprite();
+
+    sprite.scale = new Vector(5, 5);
+    this.addDrawing(sprite);
   }
 
   /**

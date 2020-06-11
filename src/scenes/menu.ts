@@ -18,8 +18,8 @@ export class Menu extends Scene {
     const player = new Player({
       x: engine.currentScene.camera.x,
       y: engine.currentScene.camera.y,
-      width: 50,
-      height: 50
+      width: 256,
+      height: 256
     });
 
     this.add(player);
