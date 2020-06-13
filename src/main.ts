@@ -10,6 +10,7 @@ const options: EngineOptions = {};
 const game = new Engine(options);
 
 scenes.init(game);
+game.setAntialiasing(false);
 
 game
   .start(AssetLoader.loader)

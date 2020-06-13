@@ -116,6 +116,7 @@ var scenes = __importStar(__webpack_require__(4));
 var options = {};
 var game = new excalibur_1.Engine(options);
 scenes.init(game);
+game.setAntialiasing(false);
 game
     .start(loader_1.AssetLoader.loader)
     .then(function () {
