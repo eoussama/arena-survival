@@ -343,7 +343,9 @@ var Player = /** @class */ (function (_super) {
      * @param ctx The canvas context
      * @param delta Delta time
      */
-    Player.prototype.onPostDraw = function (ctx, delta) { };
+    Player.prototype.onPostDraw = function (ctx, delta) {
+        this.currentDrawing = this.animations[this.state][this.direction];
+    };
     /**
      * Updates the player
      * @param engine The engine object
@@ -377,9 +379,6 @@ var Player = /** @class */ (function (_super) {
         else {
             this.state = playerState_1.PlayerState.Idle;
         }
-    };
-    Player.prototype.onPreDraw = function (ctx, delta) {
-        this.currentDrawing = this.animations[this.state][this.direction];
     };
     return Player;
 }(excalibur_1.Actor));

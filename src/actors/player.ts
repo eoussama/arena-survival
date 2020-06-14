@@ -47,7 +47,9 @@ export class Player extends Actor {
    * @param ctx The canvas context
    * @param delta Delta time
    */
-  public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) { }
+  public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) {
+    this.currentDrawing = this.animations[this.state][this.direction];
+  }
 
   /**
    * Updates the player
@@ -82,9 +84,5 @@ export class Player extends Actor {
     } else {
       this.state = PlayerState.Idle;
     }
-  }
-
-  public onPreDraw(ctx: CanvasRenderingContext2D, delta: number) {
-    this.currentDrawing = this.animations[this.state][this.direction];
   }
 }
