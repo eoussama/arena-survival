@@ -1,4 +1,4 @@
-import { Actor, Engine, Input, Vector } from "excalibur";
+import { Actor, Engine, Input, Vector, SpriteSheet } from "excalibur";
 import { AssetLoader } from "../loader/loader";
 
 
@@ -17,10 +17,19 @@ export class Player extends Actor {
   public onInitialize(engine: Engine) {
     console.log('Initializing the player...');
 
-    const sprite = AssetLoader.getById('player').asSprite();
+    const playerSheet = AssetLoader.getById('player');
 
-    sprite.scale = new Vector(5, 5);
-    this.addDrawing(sprite);
+    this.scale.x = 5;
+    this.scale.y = 5;
+
+    const playerIdleSheet = new SpriteSheet(playerSheet, 3, 1, 16, 16);
+
+    const playerUpAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+    const playerDownAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+    const playerLeftAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+    const playerRightAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+
+    this.addDrawing('idle', playerDownAnimation);
   }
 
   /**

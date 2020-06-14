@@ -204,7 +204,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.actorsTable = void 0;
 var excalibur_1 = __webpack_require__(1);
 exports.actorsTable = [
-    { id: 'player', resource: new excalibur_1.Texture('/assets/gui/actors/hero/player.png') }
+    { id: 'player', resource: new excalibur_1.Texture('/assets/gui/actors/hero/base.png') }
 ];
 
 
@@ -317,9 +317,15 @@ var Player = /** @class */ (function (_super) {
      */
     Player.prototype.onInitialize = function (engine) {
         console.log('Initializing the player...');
-        var sprite = loader_1.AssetLoader.getById('player').asSprite();
-        sprite.scale = new excalibur_1.Vector(5, 5);
-        this.addDrawing(sprite);
+        var playerSheet = loader_1.AssetLoader.getById('player');
+        this.scale.x = 5;
+        this.scale.y = 5;
+        var playerIdleSheet = new excalibur_1.SpriteSheet(playerSheet, 3, 1, 16, 16);
+        var playerUpAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+        var playerDownAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+        var playerLeftAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+        var playerRightAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
+        this.addDrawing('idle', playerDownAnimation);
     };
     /**
      * Draws the player
