@@ -1,6 +1,7 @@
 import { Actor, Engine, Input, Vector, SpriteSheet } from "excalibur";
 import { AssetLoader } from "../loader/loader";
 import { Direction } from "../enums/direction";
+import { PlayerState } from "../enums/playerState";
 
 
 
@@ -12,6 +13,7 @@ export class Player extends Actor {
   private speed: number = 2;
   private animations: any = {};
   private direction: Direction = Direction.Down;
+  private state: PlayerState = PlayerState.Idle;
 
   /**
    * Initializes the player
@@ -32,14 +34,12 @@ export class Player extends Actor {
       right: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(10)
     };
 
-    this.animations.movement = {
+    this.animations.move = {
       down: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130),
       up: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130),
       left: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130),
       right: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130)
     };
-
-    this.currentDrawing = this.animations.idle[this.direction];
   }
 
   /**
@@ -59,24 +59,32 @@ export class Player extends Actor {
 
     if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
       this.body.pos.y -= this.speed;
+
+      this.state = PlayerState.Move;
       this.direction = Direction.Up;
-      this.currentDrawing = this.animations.movement[this.direction];
     } else if (engine.input.keyboard.isHeld(Input.Keys.Down)) {
       this.body.pos.y += this.speed;
+
+      this.state = PlayerState.Move;
       this.direction = Direction.Down;
-      this.currentDrawing = this.animations.movement[this.direction];
     } else if (engine.input.keyboard.isHeld(Input.Keys.Left)) {
       this.body.pos.x -= this.speed;
+
+      this.state = PlayerState.Move;
       this.direction = Direction.Left;
-      this.currentDrawing = this.animations.movement[this.direction];
     } else if (engine.input.keyboard.isHeld(Input.Keys.Right)) {
       this.body.pos.x += this.speed;
+
+      this.state = PlayerState.Move;
       this.direction = Direction.Right;
-      this.currentDrawing = this.animations.movement[this.direction];
     } else if (engine.input.keyboard.isHeld(Input.Keys.Space)) {
       console.log('Attack');
     } else {
-      this.currentDrawing = this.animations.idle[this.direction];
+      this.state = PlayerState.Idle;
     }
+  }
+
+  public onPreDraw(ctx: CanvasRenderingContext2D, delta: number) {
+    this.currentDrawing = this.animations[this.state][this.direction];
   }
 }
