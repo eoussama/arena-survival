@@ -301,6 +301,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Player = void 0;
 var excalibur_1 = __webpack_require__(1);
 var loader_1 = __webpack_require__(2);
+var direction_1 = __webpack_require__(7);
 /**
  * The player actor
  */
@@ -310,6 +311,7 @@ var Player = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.speed = 2;
         _this.animations = {};
+        _this.direction = direction_1.Direction.Down;
         return _this;
     }
     /**
@@ -321,12 +323,19 @@ var Player = /** @class */ (function (_super) {
         var playerSheet = loader_1.AssetLoader.getById('player');
         this.scale.x = 5;
         this.scale.y = 5;
-        this.animations.playerIdle = (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(1);
-        this.animations.playerDownAnimation = (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130);
-        this.animations.playerUpAnimation = (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130);
-        this.animations.playerLeftAnimation = (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130);
-        this.animations.playerRightAnimation = (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130);
-        this.currentDrawing = this.animations.playerIdle;
+        this.animations.idle = {
+            down: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(1),
+            up: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(4),
+            left: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(7),
+            right: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(10)
+        };
+        this.animations.movement = {
+            down: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130),
+            up: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130),
+            left: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130),
+            right: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130)
+        };
+        this.currentDrawing = this.animations.idle[this.direction];
     };
     /**
      * Draws the player
@@ -343,38 +352,52 @@ var Player = /** @class */ (function (_super) {
         _super.prototype.update.call(this, engine, delta);
         if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Up)) {
             this.body.pos.y -= this.speed;
-            if (this.animations) {
-                this.currentDrawing = this.animations.playerUpAnimation;
-            }
+            this.direction = direction_1.Direction.Up;
+            this.currentDrawing = this.animations.movement[this.direction];
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Down)) {
             this.body.pos.y += this.speed;
-            if (this.animations) {
-                this.currentDrawing = this.animations.playerDownAnimation;
-            }
+            this.direction = direction_1.Direction.Down;
+            this.currentDrawing = this.animations.movement[this.direction];
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Left)) {
             this.body.pos.x -= this.speed;
-            if (this.animations) {
-                this.currentDrawing = this.animations.playerLeftAnimation;
-            }
+            this.direction = direction_1.Direction.Left;
+            this.currentDrawing = this.animations.movement[this.direction];
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Right)) {
             this.body.pos.x += this.speed;
-            if (this.animations) {
-                this.currentDrawing = this.animations.playerRightAnimation;
-            }
+            this.direction = direction_1.Direction.Right;
+            this.currentDrawing = this.animations.movement[this.direction];
         }
         else if (engine.input.keyboard.isHeld(excalibur_1.Input.Keys.Space)) {
             console.log('Attack');
         }
         else {
-            this.currentDrawing = this.animations.playerIdle;
+            this.currentDrawing = this.animations.idle[this.direction];
         }
     };
     return Player;
 }(excalibur_1.Actor));
 exports.Player = Player;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Direction = void 0;
+var Direction;
+(function (Direction) {
+    Direction["Up"] = "up";
+    Direction["Right"] = "right";
+    Direction["Down"] = "down";
+    Direction["Left"] = "left";
+})(Direction = exports.Direction || (exports.Direction = {}));
+;
 
 
 /***/ })
