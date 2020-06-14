@@ -9,6 +9,7 @@ import { AssetLoader } from "../loader/loader";
 export class Player extends Actor {
 
   private speed: number = 2;
+  private animations: any = {};
 
   /**
    * Initializes the player
@@ -22,14 +23,13 @@ export class Player extends Actor {
     this.scale.x = 5;
     this.scale.y = 5;
 
-    const playerIdleSheet = new SpriteSheet(playerSheet, 3, 1, 16, 16);
+    this.animations.playerIdle = (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(1);
+    this.animations.playerDownAnimation = (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130);
+    this.animations.playerUpAnimation = (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130);
+    this.animations.playerLeftAnimation = (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130);
+    this.animations.playerRightAnimation = (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130);
 
-    const playerUpAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
-    const playerDownAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
-    const playerLeftAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
-    const playerRightAnimation = playerIdleSheet.getAnimationForAll(engine, 125);
-
-    this.addDrawing('idle', playerDownAnimation);
+    this.currentDrawing = this.animations.playerIdle;
   }
 
   /**
@@ -48,19 +48,33 @@ export class Player extends Actor {
     super.update(engine, delta);
 
     if (engine.input.keyboard.isHeld(Input.Keys.Up)) {
-      console.log('Move up');
       this.body.pos.y -= this.speed;
+
+      if (this.animations) {
+        this.currentDrawing = this.animations.playerUpAnimation;
+      }
     } else if (engine.input.keyboard.isHeld(Input.Keys.Down)) {
-      console.log('Move down');
       this.body.pos.y += this.speed;
+
+      if (this.animations) {
+        this.currentDrawing = this.animations.playerDownAnimation;
+      }
     } else if (engine.input.keyboard.isHeld(Input.Keys.Left)) {
-      console.log('Move left');
       this.body.pos.x -= this.speed;
+
+      if (this.animations) {
+        this.currentDrawing = this.animations.playerLeftAnimation;
+      }
     } else if (engine.input.keyboard.isHeld(Input.Keys.Right)) {
-      console.log('Move right');
       this.body.pos.x += this.speed;
+
+      if (this.animations) {
+        this.currentDrawing = this.animations.playerRightAnimation;
+      }
     } else if (engine.input.keyboard.isHeld(Input.Keys.Space)) {
       console.log('Attack');
+    } else {
+      this.currentDrawing = this.animations.playerIdle;
     }
   }
 }
