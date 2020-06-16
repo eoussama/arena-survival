@@ -35,9 +35,9 @@ export class Player extends Actor {
     };
 
     this.animations.move = {
-      down: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130),
-      up: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130),
-      left: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130),
+      down: (new SpriteSheet(playerSheet, 3, 1, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130),
+      up: (new SpriteSheet(playerSheet, 3, 2, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130),
+      left: (new SpriteSheet(playerSheet, 3, 3, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130),
       right: (new SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130)
     };
   }
