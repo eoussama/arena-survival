@@ -1,5 +1,5 @@
 import { Scene, Engine } from "excalibur";
-import { Player } from "../actors/player";
+import { Player } from "../actors/characters/player";
 
 
 

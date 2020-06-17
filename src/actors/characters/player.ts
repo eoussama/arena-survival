@@ -1,7 +1,7 @@
 import { Actor, Engine, Input, Vector, SpriteSheet } from "excalibur";
-import { AssetLoader } from "../loader/loader";
-import { Direction } from "../enums/direction";
-import { PlayerState } from "../enums/playerState";
+import { AssetLoader } from "../../loader/loader";
+import { Direction } from "../../enums/direction";
+import { PlayerState } from "../../enums/playerState";
 
 
 
