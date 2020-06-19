@@ -300,21 +300,16 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Player = void 0;
 var excalibur_1 = __webpack_require__(1);
-var loader_1 = __webpack_require__(2);
 var direction_1 = __webpack_require__(7);
 var playerState_1 = __webpack_require__(8);
+var character_1 = __webpack_require__(9);
 /**
  * The player actor
  */
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.speed = 2;
-        _this.animations = {};
-        _this.direction = direction_1.Direction.Down;
-        _this.state = playerState_1.PlayerState.Idle;
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
      * Initializes the player
@@ -322,29 +317,6 @@ var Player = /** @class */ (function (_super) {
      */
     Player.prototype.onInitialize = function (engine) {
         console.log('Initializing the player...');
-        var playerSheet = loader_1.AssetLoader.getById('player');
-        this.scale.x = 5;
-        this.scale.y = 5;
-        this.animations.idle = {
-            down: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(1),
-            up: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(4),
-            left: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(7),
-            right: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(10)
-        };
-        this.animations.move = {
-            down: (new excalibur_1.SpriteSheet(playerSheet, 3, 1, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130),
-            up: (new excalibur_1.SpriteSheet(playerSheet, 3, 2, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130),
-            left: (new excalibur_1.SpriteSheet(playerSheet, 3, 3, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130),
-            right: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130)
-        };
-    };
-    /**
-     * Draws the player
-     * @param ctx The canvas context
-     * @param delta Delta time
-     */
-    Player.prototype.onPostDraw = function (ctx, delta) {
-        this.currentDrawing = this.animations[this.state][this.direction];
     };
     /**
      * Updates the player
@@ -381,7 +353,7 @@ var Player = /** @class */ (function (_super) {
         }
     };
     return Player;
-}(excalibur_1.Actor));
+}(character_1.Character));
 exports.Player = Player;
 
 
@@ -418,6 +390,79 @@ var PlayerState;
     PlayerState["Idle"] = "idle";
 })(PlayerState = exports.PlayerState || (exports.PlayerState = {}));
 ;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Character = void 0;
+var excalibur_1 = __webpack_require__(1);
+var direction_1 = __webpack_require__(7);
+var playerState_1 = __webpack_require__(8);
+var loader_1 = __webpack_require__(2);
+/**
+ * The player actor
+ */
+var Character = /** @class */ (function (_super) {
+    __extends(Character, _super);
+    function Character() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.speed = 2;
+        _this.animations = {};
+        _this.direction = direction_1.Direction.Down;
+        _this.state = playerState_1.PlayerState.Idle;
+        return _this;
+    }
+    /**
+     * Initializes the player
+     * @param engine The engine object
+     */
+    Character.prototype.onInitialize = function (engine) {
+        console.log('Initializing the player...');
+        var playerSheet = loader_1.AssetLoader.getById('player');
+        this.scale.x = 5;
+        this.scale.y = 5;
+        this.animations.idle = {
+            down: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(1),
+            up: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(4),
+            left: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(7),
+            right: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getSprite(10)
+        };
+        this.animations.move = {
+            down: (new excalibur_1.SpriteSheet(playerSheet, 3, 1, 16, 16)).getAnimationByIndices(engine, [0, 1, 2], 130),
+            up: (new excalibur_1.SpriteSheet(playerSheet, 3, 2, 16, 16)).getAnimationByIndices(engine, [3, 4, 5], 130),
+            left: (new excalibur_1.SpriteSheet(playerSheet, 3, 3, 16, 16)).getAnimationByIndices(engine, [6, 7, 8], 130),
+            right: (new excalibur_1.SpriteSheet(playerSheet, 3, 4, 16, 16)).getAnimationByIndices(engine, [9, 10, 11], 130)
+        };
+    };
+    /**
+     * Draws the player
+     * @param ctx The canvas context
+     * @param delta Delta time
+     */
+    Character.prototype.onPostDraw = function (ctx, delta) {
+        this.currentDrawing = this.animations[this.state][this.direction];
+    };
+    return Character;
+}(excalibur_1.Actor));
+exports.Character = Character;
 
 
 /***/ })
