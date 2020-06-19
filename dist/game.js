@@ -316,6 +316,7 @@ var Player = /** @class */ (function (_super) {
      * @param engine The engine object
      */
     Player.prototype.onInitialize = function (engine) {
+        _super.prototype.onInitialize.call(this, engine);
         console.log('Initializing the player...');
     };
     /**
@@ -435,7 +436,7 @@ var Character = /** @class */ (function (_super) {
      * @param engine The engine object
      */
     Character.prototype.onInitialize = function (engine) {
-        console.log('Initializing the player...');
+        console.log('Initializing the character...');
         var playerSheet = loader_1.AssetLoader.getById('player');
         this.scale.x = 5;
         this.scale.y = 5;

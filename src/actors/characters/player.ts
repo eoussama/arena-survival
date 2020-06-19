@@ -15,6 +15,7 @@ export class Player extends Character {
    * @param engine The engine object
    */
   public onInitialize(engine: Engine) {
+    super.onInitialize(engine);
     console.log('Initializing the player...');
   }
 

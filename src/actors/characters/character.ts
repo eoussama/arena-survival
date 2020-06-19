@@ -19,7 +19,7 @@ export class Character extends Actor {
    * @param engine The engine object
    */
   public onInitialize(engine: Engine) {
-    console.log('Initializing the player...');
+    console.log('Initializing the character...');
 
     const playerSheet = AssetLoader.getById('player');
 
