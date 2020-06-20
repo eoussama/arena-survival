@@ -1,4 +1,4 @@
-import { Actor, Engine, SpriteSheet, Input } from "excalibur";
+import { Actor, Engine, SpriteSheet } from "excalibur";
 import { Direction } from "../../enums/direction";
 import { PlayerState } from "../../enums/playerState";
 import { AssetLoader } from "../../loader/loader";
@@ -9,10 +9,21 @@ import { AssetLoader } from "../../loader/loader";
  * The player actor
  */
 export class Character extends Actor {
+
+  //#region Properties
+
   protected speed: number = 2;
   protected animations: any = {};
   protected direction: Direction = Direction.Down;
   protected state: PlayerState = PlayerState.Idle;
+
+  //#endregion
+
+  //#region Lifecycle
+
+  constructor(params: any) {
+    super(params);
+  }
 
   /**
    * Initializes the player
@@ -49,4 +60,6 @@ export class Character extends Actor {
   public onPostDraw(ctx: CanvasRenderingContext2D, delta: number) {
     this.currentDrawing = this.animations[this.state][this.direction];
   }
+
+  //#endregion
 }

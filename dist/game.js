@@ -423,8 +423,11 @@ var loader_1 = __webpack_require__(2);
  */
 var Character = /** @class */ (function (_super) {
     __extends(Character, _super);
-    function Character() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    //#endregion
+    //#region Lifecycle
+    function Character(params) {
+        var _this = _super.call(this, params) || this;
+        //#region Properties
         _this.speed = 2;
         _this.animations = {};
         _this.direction = direction_1.Direction.Down;
