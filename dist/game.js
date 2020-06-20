@@ -204,7 +204,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.actorsTable = void 0;
 var excalibur_1 = __webpack_require__(1);
 exports.actorsTable = [
-    { id: 'player', resource: new excalibur_1.Texture('/assets/gui/actors/hero/base.png') }
+    { id: 'player', resource: new excalibur_1.Texture('/assets/gui/actors/hero/base.png') },
+    { id: 'enemy', resource: new excalibur_1.Texture('/assets/gui/actors/hero/base.png') }
 ];
 
 
@@ -530,7 +531,7 @@ var Enemy = /** @class */ (function (_super) {
     __extends(Enemy, _super);
     //#region Lifecycle
     function Enemy(params) {
-        return _super.call(this, __assign(__assign({}, params), { spriteSheet: loader_1.AssetLoader.getById('player') })) || this;
+        return _super.call(this, __assign(__assign({}, params), { spriteSheet: loader_1.AssetLoader.getById('enemy') })) || this;
     }
     /**
      * Initializes the enemy
@@ -538,7 +539,7 @@ var Enemy = /** @class */ (function (_super) {
      */
     Enemy.prototype.onInitialize = function (engine) {
         _super.prototype.onInitialize.call(this, engine);
-        console.log('Initializing the player...');
+        console.log('Initializing the enemy...');
     };
     return Enemy;
 }(character_1.Character));

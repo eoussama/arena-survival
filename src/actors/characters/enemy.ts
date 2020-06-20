@@ -11,7 +11,7 @@ export class Enemy extends Character {
   constructor(params: any) {
     super({
       ...params,
-      spriteSheet: AssetLoader.getById('player')
+      spriteSheet: AssetLoader.getById('enemy')
     });
   }
 
@@ -21,7 +21,7 @@ export class Enemy extends Character {
    */
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
-    console.log('Initializing the player...');
+    console.log('Initializing the enemy...');
   }
 
   //#endregion
