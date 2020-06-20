@@ -6,7 +6,7 @@ import { AssetLoader } from "../../loader/loader";
 
 
 /**
- * The player actor
+ * The character actor
  */
 export class Character extends Actor {
 
@@ -29,7 +29,7 @@ export class Character extends Actor {
   }
 
   /**
-   * Initializes the player
+   * Initializes the character
    * @param engine The engine object
    */
   public onInitialize(engine: Engine) {
@@ -54,7 +54,7 @@ export class Character extends Actor {
   }
 
   /**
-   * Draws the player
+   * Draws the character
    * @param ctx The canvas context
    * @param delta Delta time
    */

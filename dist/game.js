@@ -439,7 +439,7 @@ var excalibur_1 = __webpack_require__(1);
 var direction_1 = __webpack_require__(7);
 var playerState_1 = __webpack_require__(8);
 /**
- * The player actor
+ * The character actor
  */
 var Character = /** @class */ (function (_super) {
     __extends(Character, _super);
@@ -456,7 +456,7 @@ var Character = /** @class */ (function (_super) {
         return _this;
     }
     /**
-     * Initializes the player
+     * Initializes the character
      * @param engine The engine object
      */
     Character.prototype.onInitialize = function (engine) {
@@ -478,7 +478,7 @@ var Character = /** @class */ (function (_super) {
         }
     };
     /**
-     * Draws the player
+     * Draws the character
      * @param ctx The canvas context
      * @param delta Delta time
      */
@@ -511,14 +511,35 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Enemy = void 0;
 var character_1 = __webpack_require__(9);
+var loader_1 = __webpack_require__(2);
 var Enemy = /** @class */ (function (_super) {
     __extends(Enemy, _super);
-    function Enemy() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    //#region Lifecycle
+    function Enemy(params) {
+        return _super.call(this, __assign(__assign({}, params), { spriteSheet: loader_1.AssetLoader.getById('player') })) || this;
     }
+    /**
+     * Initializes the enemy
+     * @param engine The engine object
+     */
+    Enemy.prototype.onInitialize = function (engine) {
+        _super.prototype.onInitialize.call(this, engine);
+        console.log('Initializing the player...');
+    };
     return Enemy;
 }(character_1.Character));
 exports.Enemy = Enemy;
