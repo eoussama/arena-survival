@@ -8,11 +8,8 @@ export class Enemy extends Character {
 
   //#region Lifecycle
 
-  constructor(params: any) {
-    super({
-      ...params,
-      spriteSheet: AssetLoader.getById('enemy')
-    });
+  constructor() {
+    super({ spriteSheet: AssetLoader.getById('enemy') });
   }
 
   /**

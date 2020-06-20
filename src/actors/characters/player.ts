@@ -13,11 +13,8 @@ export class Player extends Character {
 
   //#region Lifecycle
 
-  constructor(params: any) {
-    super({
-      ...params,
-      spriteSheet: AssetLoader.getById('player')
-    });
+  constructor() {
+    super({ spriteSheet: AssetLoader.getById('player') });
   }
 
   /**

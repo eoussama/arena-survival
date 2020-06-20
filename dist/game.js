@@ -267,18 +267,8 @@ var Menu = /** @class */ (function (_super) {
      */
     Menu.prototype.onInitialize = function (engine) {
         console.log('Initializing the menu scene...');
-        var char = new enemy_1.Enemy({
-            x: engine.currentScene.camera.x + 100,
-            y: engine.currentScene.camera.y,
-            width: 256,
-            height: 256
-        });
-        var player = new player_1.Player({
-            x: engine.currentScene.camera.x,
-            y: engine.currentScene.camera.y,
-            width: 256,
-            height: 256
-        });
+        var char = new enemy_1.Enemy();
+        var player = new player_1.Player();
         this.add(char);
         this.add(player);
     };
@@ -306,17 +296,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Player = void 0;
 var excalibur_1 = __webpack_require__(1);
@@ -330,8 +309,8 @@ var loader_1 = __webpack_require__(2);
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     //#region Lifecycle
-    function Player(params) {
-        return _super.call(this, __assign(__assign({}, params), { spriteSheet: loader_1.AssetLoader.getById('player') })) || this;
+    function Player() {
+        return _super.call(this, { spriteSheet: loader_1.AssetLoader.getById('player') }) || this;
     }
     /**
      * Initializes the player
@@ -461,6 +440,10 @@ var Character = /** @class */ (function (_super) {
      * @param engine The engine object
      */
     Character.prototype.onInitialize = function (engine) {
+        this.pos.x = engine.currentScene.camera.x;
+        this.pos.y = engine.currentScene.camera.y;
+        this.height = 256;
+        this.width = 256;
         this.scale.x = 5;
         this.scale.y = 5;
         if (this.spriteSheet) {
@@ -512,17 +495,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Enemy = void 0;
 var character_1 = __webpack_require__(9);
@@ -530,8 +502,8 @@ var loader_1 = __webpack_require__(2);
 var Enemy = /** @class */ (function (_super) {
     __extends(Enemy, _super);
     //#region Lifecycle
-    function Enemy(params) {
-        return _super.call(this, __assign(__assign({}, params), { spriteSheet: loader_1.AssetLoader.getById('enemy') })) || this;
+    function Enemy() {
+        return _super.call(this, { spriteSheet: loader_1.AssetLoader.getById('enemy') }) || this;
     }
     /**
      * Initializes the enemy

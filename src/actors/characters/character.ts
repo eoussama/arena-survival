@@ -23,7 +23,7 @@ export class Character extends Actor {
 
   //#region Lifecycle
 
-  constructor(params: any) {
+  constructor(params?: any) {
     super(params);
     this.spriteSheet = params.spriteSheet;
   }
@@ -33,6 +33,12 @@ export class Character extends Actor {
    * @param engine The engine object
    */
   public onInitialize(engine: Engine) {
+    this.pos.x = engine.currentScene.camera.x;
+    this.pos.y = engine.currentScene.camera.y;
+
+    this.height = 256;
+    this.width = 256;
+
     this.scale.x = 5;
     this.scale.y = 5;
 

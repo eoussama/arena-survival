@@ -17,19 +17,8 @@ export class Menu extends Scene {
   public onInitialize(engine: Engine) {
     console.log('Initializing the menu scene...');
 
-    const char = new Enemy({
-      x: engine.currentScene.camera.x + 100,
-      y: engine.currentScene.camera.y,
-      width: 256,
-      height: 256
-    });
-
-    const player = new Player({
-      x: engine.currentScene.camera.x,
-      y: engine.currentScene.camera.y,
-      width: 256,
-      height: 256
-    });
+    const char = new Enemy();
+    const player = new Player();
 
     this.add(char);
     this.add(player);
