@@ -2,6 +2,7 @@ import { Engine, Input } from "excalibur";
 import { Direction } from "../../enums/direction";
 import { PlayerState } from "../../enums/playerState";
 import { Character } from "./character";
+import { AssetLoader } from "../../loader/loader";
 
 
 
@@ -9,6 +10,15 @@ import { Character } from "./character";
  * The player actor
  */
 export class Player extends Character {
+
+  //#region Lifecycle
+
+  constructor(params: any) {
+    super({
+      ...params,
+      spriteSheet: AssetLoader.getById('player')
+    });
+  }
 
   /**
    * Initializes the player
@@ -53,4 +63,6 @@ export class Player extends Character {
       this.state = PlayerState.Idle;
     }
   }
+
+  //#endregion
 }
