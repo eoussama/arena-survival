@@ -251,7 +251,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Menu = void 0;
 var excalibur_1 = __webpack_require__(1);
 var player_1 = __webpack_require__(6);
-var character_1 = __webpack_require__(9);
+var enemy_1 = __webpack_require__(10);
 /**
  * The menu scene
  */
@@ -266,7 +266,7 @@ var Menu = /** @class */ (function (_super) {
      */
     Menu.prototype.onInitialize = function (engine) {
         console.log('Initializing the menu scene...');
-        var char = new character_1.Character({
+        var char = new enemy_1.Enemy({
             x: engine.currentScene.camera.x + 100,
             y: engine.currentScene.camera.y,
             width: 256,
@@ -490,6 +490,38 @@ var Character = /** @class */ (function (_super) {
     return Character;
 }(excalibur_1.Actor));
 exports.Character = Character;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Enemy = void 0;
+var character_1 = __webpack_require__(9);
+var Enemy = /** @class */ (function (_super) {
+    __extends(Enemy, _super);
+    function Enemy() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Enemy;
+}(character_1.Character));
+exports.Enemy = Enemy;
 
 
 /***/ })

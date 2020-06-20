@@ -1,6 +1,7 @@
 import { Scene, Engine } from "excalibur";
 import { Player } from "../actors/characters/player";
 import { Character } from "../actors/characters/character";
+import { Enemy } from "../actors/characters/enemy";
 
 
 
@@ -16,7 +17,7 @@ export class Menu extends Scene {
   public onInitialize(engine: Engine) {
     console.log('Initializing the menu scene...');
 
-    const char = new Character({
+    const char = new Enemy({
       x: engine.currentScene.camera.x + 100,
       y: engine.currentScene.camera.y,
       width: 256,
