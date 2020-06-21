@@ -71,4 +71,10 @@ export class Character extends Actor {
   }
 
   //#endregion
+
+  //#region Methods
+
+  public move(direction: Direction) { }
+
+  //#endregion
 }
